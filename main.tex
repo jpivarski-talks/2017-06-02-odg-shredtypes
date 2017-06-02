@@ -304,4 +304,32 @@ data-b          \textcolor{darkgreen}{1.1},            \textcolor{darkgreen}{2.2
 \uncover<2->{Recursive counters can be expanded into these, too.}
 \end{frame}
 
+\begin{frame}{Recursively defined types}
+\vspace{0.5 cm}
+Another feature to consider is whether an encoding allows for recusively defined types: types defined in terms of themselves.
+
+\vspace{0.5 cm}
+{\bf Classic example:} trees.
+\begin{center}
+\tt\small \textcolor{red}{T} := \textcolor{blue}{Record}<\textcolor{darkgreen}{children:}\,\textcolor{blue}{List}<\textcolor{red}{T}>, \textcolor{darkgreen}{data:}\,\textcolor{blue}{float64}>
+\end{center}
+
+\vspace{0.5 cm}
+Formats that have a separate array for each level of structure cannot encode recursive types, since we don't know how many levels of structure there will be.
+\end{frame}
+
+\begin{frame}{Summary of capabilities}
+\mbox{\hspace{-0.5 cm}\begin{minipage}{1.15\linewidth}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{p{0.25\linewidth} p{0.3\linewidth} p{0.33\linewidth}}
+                   & {\bf recursive types?} & {\bf other features} \\
+\textcolor{darkblue}{Recursive counters} & yes, by terminating list sizes with $-1$ & efficient iteration \\
+\textcolor{darkblue}{Parquet style} & \mbox{yes, by not capping} \mbox{repetition level} \mbox{(though Parquet doesn't} \mbox{support recursive types)} & \mbox{tightly packed without} compression \\
+\textcolor{darkblue}{Arrow style} & no & efficient random access \\
+\textcolor{darkblue}{Normal form} & no & efficient aggregation
+\end{tabular}
+\end{minipage}}
+\end{frame}
+
+
 \end{document}
