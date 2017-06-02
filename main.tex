@@ -90,7 +90,7 @@
 Some of you know (or dimly remember) that I'm working on a query system for rich data transformations: an SQL with higher-order functions called Femtocode.
 
 \vfill
-\uncover<2->{I've found that the data representation and efficient iteration can be split off as a subproject, with no special query language required.}
+\uncover<2->{Along the way, I've found that the data representation and efficient iteration can be split off as a subproject, with no special query language required.}
 
 \vfill
 \uncover<3->{If you've never heard of Femtocode, that's fine--- it won't be relevant for this talk.}
@@ -104,11 +104,11 @@ I will describe methods of representing rich, Avro-like data in plain, flat arra
 
 \vspace{0.1 cm}
 \begin{itemize}\setlength{\itemsep}{0.2 cm}
-\item<2-> Data are columnar--- accessing one field does not require all fields to be read from disk, transferred over a network, or passed through CPU cache. (Especially good for queries, but good for other contexts as well.)
+\item<2-> Data are columnar--- accessing one field does not require all fields to be read from disk, transferred over a network, or passed through CPU cache. (Especially good for queries, but good in other contexts as well.)
 \item<3-> Iterating over arbitrary length lists of structures does not require heap memory allocation: another performance advantage.
 \item<4-> Plain arrays are easy to manage and share:
 \begin{itemize}
-\item blobs in an object store,
+\item blobs in an object store like S3,
 \item memory-mapped Numpy arrays,
 \item streaming over HTTP,
 \item zero-copy shared memory between processes.
@@ -137,9 +137,9 @@ That is, you might want to use this technology in a future release of FastScore.
 
 \begin{columns}
 \column{0.6\linewidth}
-Columnar tables are an old idea
+Columnar {\it tables} are an old idea
 \begin{itemize}
-\item Fortran arrays
+\item multidimensional arrays in Fortran
 \item most SQL implementations
 \end{itemize}
 
@@ -247,13 +247,13 @@ data-b         \textcolor{darkgreen}{1.1},            \textcolor{darkgreen}{2.2}
 Dremel/Parquet style packs tightly without compression, but it's unclear how relevant that is with fast compression (e.g.\ snappy).
 
 \vspace{0.25 cm}
-It also adds a lot of complexity; unclear how to present this data as an iterator.
+It also adds a lot of complexity; unclear (to me) how to present this data as an iterator. Parquet library creates objects on the heap.
 \end{uncoverenv}
 \end{frame}
 
 \begin{frame}[fragile]{Method \#3: Arrow style}
 \vspace{0.5 cm}
-The Parquet developers are trying to standardize an efficient columnar data representation {\it in memory,} for sharing data between different kinds of DataFrames (R, Pandas, Spark).
+The Parquet developers are trying to standardize an efficient columnar data representation {\it in memory,} for sharing data among different DataFrames (R, Pandas, Spark).
 
 \vspace{0.25 cm}
 \uncover<2->{However, they're not following the Parquet style: they're doing something similar to counters (without recursion).}
@@ -262,7 +262,7 @@ The Parquet developers are trying to standardize an efficient columnar data repr
 \uncover<3->{Each level of structure is a separate offsets array, which permits random access: {\tt\footnotesize data[off3[off2[off1[i] + j] + k]]}}
 
 \vspace{0.25 cm}
-\begin{uncoverenv}<4->
+\begin{uncoverenv}<3->
 {\bf Example:} to encode {\tt\footnotesize List<List<Record<a:integer,b:float>>>}
 
 \scriptsize\bf
@@ -277,7 +277,7 @@ data-b         \textcolor{darkgreen}{1.1},            \textcolor{darkgreen}{2.2}
 \end{uncoverenv}
 
 \vspace{0.25 cm}\normalsize\sf
-\uncover<5->{Recursive counters can be expanded into offsets (cumulative sum).}
+\uncover<4->{Recursive counters can be expanded into offsets (cumulative sum).}
 \end{frame}
 
 \begin{frame}[fragile]{Method \#4: Normal form}
@@ -301,7 +301,7 @@ data-b          \textcolor{darkgreen}{1.1},            \textcolor{darkgreen}{2.2
 \uncover<2->{This uses the most memory, but it fits into a rectangular table and facilitates aggregation of sublists into lists.}
 
 \vspace{0.35 cm}
-\uncover<2->{Recursive counters can be expanded into these, too.}
+\uncover<3->{Recursive counters can be expanded into these, too.}
 \end{frame}
 
 \begin{frame}{Recursively defined types}
@@ -321,15 +321,118 @@ Formats that have a separate array for each level of structure cannot encode rec
 \begin{frame}{Summary of capabilities}
 \mbox{\hspace{-0.5 cm}\begin{minipage}{1.15\linewidth}
 \renewcommand{\arraystretch}{2}
-\begin{tabular}{p{0.25\linewidth} p{0.3\linewidth} p{0.33\linewidth}}
+\begin{tabular}{p{0.25\linewidth} p{0.32\linewidth} p{0.33\linewidth}}
                    & {\bf recursive types?} & {\bf other features} \\
-\textcolor{darkblue}{Recursive counters} & yes, by terminating list sizes with $-1$ & efficient iteration \\
-\textcolor{darkblue}{Parquet style} & \mbox{yes, by not capping} \mbox{repetition level} \mbox{(though Parquet doesn't} \mbox{support recursive types)} & \mbox{tightly packed without} compression \\
+\textcolor{darkblue}{Recursive counters} & yes, by terminating list size recursion with a $-1$ & \mbox{efficient iteration, can} stream from source \\
+\textcolor{darkblue}{Dremel/Parquet style} & \mbox{yes, by not capping the} \mbox{repetition level (though} \mbox{Parquet itself doesn't} \mbox{support recursive types)} & \mbox{tightly packed without} compression \\
 \textcolor{darkblue}{Arrow style} & no & efficient random access \\
 \textcolor{darkblue}{Normal form} & no & efficient aggregation
 \end{tabular}
 \end{minipage}}
 \end{frame}
 
+\begin{frame}{How do these techniques perform?}
+\vspace{0.5 cm}
+\begin{itemize}
+\item What is their relative file size for the same input data?
+\item How do definition levels compare to NULLs (databases; normal form) and bitmasks (Arrow)?
+\item How much does that matter after compression? For zlib vs.\ snappy?
+\item How do sizes depend on tree depth, sublist lengths, and entropy (post-compression)?
+\item How quickly can they be read out? What is the throughput cost of compression?
+\item How quickly can they be written? (Complicated question.)
+\end{itemize}
+\begin{uncoverenv}<2->
+\begin{center}
+\Large \textcolor{darkblue}{Answer:} I don't know. That's what I'm studying.
+\end{center}
+\end{uncoverenv}
+\end{frame}
+
+\begin{frame}{Plans for a concrete library}
+\large
+\vspace{0.5 cm}
+My long-term goal is to develop a query system (Femtocode), but I will develop and distribute this as an independent library.
+
+\vspace{0.5 cm}
+\includegraphics[width=\linewidth]{shredtypes.png}
+\end{frame}
+
+\begin{frame}{Plans for a concrete library}
+\vspace{0.5 cm}
+\large
+Core is a specification for how to interpret a ``namespace of one-dimensional arrays'' as a typesystem of primitives, lists, and records.
+
+\vspace{0.5 cm}
+\begin{onlyenv}<1>
+Namespace of one-dimensional arrays:
+\begin{itemize}
+\item Python dictionary from strings to Numpy arrays
+\item Numpy zip file (.npz format)
+\item HTTP server mapping URLs to binary blobs
+\item System V style shared memory among processes
+\end{itemize}
+\end{onlyenv}
+\begin{onlyenv}<2>
+Iteration methods:
+\begin{itemize}
+\item Pure Python for testing
+\item Numba JIT-compiled for fast processing
+\item Iterating from stream and decompression-while-iterating
+\item Multilingual: JIT-compiled C++ (Cling) or Scala macros
+\end{itemize}
+\end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]{What would it look like?}
+\vspace{0.3 cm}
+{\bf Something like this:}
+
+\small
+\begin{minted}[frame=single]{python}
+def action(event):
+    print(event.field1, event.field2)
+
+    for x in event.sublist:
+        do_something(x.subfield)
+
+datasource.map(action)
+\end{minted}
+
+\normalsize
+The {\tt\small datasource.map} uses Numba to JIT-compile iterators for this data source, including only the fields referenced in the function ({\tt\small field1}, {\tt\small field2}, and {\tt\small sublist-subfield}).
+
+\vspace{0.25 cm}
+No event structures are created, only indexes on the stack that provide data on demand.
+\end{frame}
+
+\begin{frame}{How could you use it?}
+\vspace{0.5 cm}
+\large
+You already have an Avro-typed abstract view of data passing through FastScore.
+
+\vspace{0.5 cm}
+You can swap actual Avro binaries with array streams or cached arrays.
+
+\vspace{0.5 cm}
+Processes on the same computer can access a shared in-memory array, using a common protocol in multiple languages.
+\end{frame}
+
+\begin{frame}{Closing remarks}
+\vspace{0.5 cm}
+\large
+The Femtocode query system project is at least a year away, and might have limited use for your customers because it requires a new query language.
+
+\vspace{0.5 cm}
+\uncover<2->{Your customers like to work in Python and R.}
+
+\vspace{0.5 cm}
+\uncover<3->{Shredtypes takes the fast iterator concept out of the Femtocode and makes it available in any language with JIT-compilation on any system that can handle named arrays.}
+
+\vspace{0.25 cm}
+\uncover<3->{It could be a valuable addition to FastScore.}
+
+\vspace{0.5 cm}
+\uncover<4->{(\ldots when it's done!)}
+\end{frame}
 
 \end{document}
