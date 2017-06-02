@@ -251,7 +251,57 @@ It also adds a lot of complexity; unclear how to present this data as an iterato
 \end{uncoverenv}
 \end{frame}
 
+\begin{frame}[fragile]{Method \#3: Arrow style}
+\vspace{0.5 cm}
+The Parquet developers are trying to standardize an efficient columnar data representation {\it in memory,} for sharing data between different kinds of DataFrames (R, Pandas, Spark).
 
+\vspace{0.25 cm}
+\uncover<2->{However, they're not following the Parquet style: they're doing something similar to counters (without recursion).}
 
+\vspace{0.25 cm}
+\uncover<3->{Each level of structure is a separate offsets array, which permits random access: {\tt\footnotesize data[off3[off2[off1[i] + j] + k]]}}
+
+\vspace{0.25 cm}
+\begin{uncoverenv}<4->
+{\bf Example:} to encode {\tt\footnotesize List<List<Record<a:integer,b:float>>>}
+
+\scriptsize\bf
+\begin{Verbatim}[commandchars=\\\{\}]
+value   \textcolor{blue}{[} \textcolor{violet}{[}(\textcolor{red}{1}, \textcolor{darkgreen}{1.1})\textcolor{violet}{]}, \textcolor{violet}{[]}, \textcolor{violet}{[}(\textcolor{red}{2}, \textcolor{darkgreen}{2.2}), (\textcolor{red}{3}, \textcolor{darkgreen}{3.3})\textcolor{violet}{]} \textcolor{blue}{]}, \textcolor{blue}{[} \textcolor{violet}{[}(\textcolor{red}{4}, \textcolor{darkgreen}{4.4})\textcolor{violet}{]} \textcolor{blue}{]}
+
+offset-1 \textcolor{blue}{0},                                        \textcolor{blue}{3}
+offset-2   \textcolor{violet}{0},          \textcolor{violet}{0},  \textcolor{violet}{1},                        \textcolor{violet}{3}
+data-a      \textcolor{red}{1},              \textcolor{red}{2},        \textcolor{red}{3},              \textcolor{red}{4}
+data-b         \textcolor{darkgreen}{1.1},            \textcolor{darkgreen}{2.2},      \textcolor{darkgreen}{3.3},            \textcolor{darkgreen}{4.4}
+\end{Verbatim}
+\end{uncoverenv}
+
+\vspace{0.25 cm}\normalsize\sf
+\uncover<5->{Recursive counters can be expanded into offsets (cumulative sum).}
+\end{frame}
+
+\begin{frame}[fragile]{Method \#4: Normal form}
+\vspace{0.5 cm}
+Arrow style offsets can be viewed as pointers from lists into sublists; pointers from sublists into lists is ``normal form'' from database theory.
+
+\vspace{0.35 cm}
+{\bf Example:} to encode {\tt\footnotesize List<List<Record<a:integer,b:float>>>}
+
+\scriptsize\bf
+\begin{Verbatim}[commandchars=\\\{\}]
+value    \textcolor{blue}{[} \textcolor{violet}{[}(\textcolor{red}{1}, \textcolor{darkgreen}{1.1})\textcolor{violet}{]}, \textcolor{violet}{[]}, \textcolor{violet}{[}(\textcolor{red}{2}, \textcolor{darkgreen}{2.2}), (\textcolor{red}{3}, \textcolor{darkgreen}{3.3})\textcolor{violet}{]} \textcolor{blue}{]}, \textcolor{blue}{[} \textcolor{violet}{[}(\textcolor{red}{4}, \textcolor{darkgreen}{4.4})\textcolor{violet}{]} \textcolor{blue}{]}
+
+offset-1     \textcolor{blue}{0},              \textcolor{blue}{0},        \textcolor{blue}{0},              \textcolor{blue}{1}
+offset-2     \textcolor{violet}{0},              \textcolor{violet}{2},        \textcolor{violet}{2},              \textcolor{violet}{3}
+data-a       \textcolor{red}{1},              \textcolor{red}{2},        \textcolor{red}{3},              \textcolor{red}{4}
+data-b          \textcolor{darkgreen}{1.1},            \textcolor{darkgreen}{2.2},      \textcolor{darkgreen}{3.3},            \textcolor{darkgreen}{4.4}
+\end{Verbatim}
+
+\vspace{0.35 cm}\normalsize\sf
+\uncover<2->{This uses the most memory, but it fits into a rectangular table and facilitates aggregation of sublists into lists.}
+
+\vspace{0.35 cm}
+\uncover<2->{Recursive counters can be expanded into these, too.}
+\end{frame}
 
 \end{document}
