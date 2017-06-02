@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="644.97626"
+   height="309.84375"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="tower-of-types.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="344.18678"
+     inkscape:cy="157.72147"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:object-nodes="false"
+     inkscape:object-paths="false"
+     inkscape:window-width="1914"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     fit-margin-top="10"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="10" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-40.53125,-431.40625)">
+    <rect
+       style="color:#000000;fill:#d5fff6;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;opacity:0.25"
+       id="rect3005"
+       width="111.42857"
+       height="47.857155"
+       x="51.545567"
+       y="502.397" />
+    <rect
+       y="502.397"
+       x="171.64456"
+       height="47.857155"
+       width="111.42857"
+       id="use3009"
+       style="color:#000000;fill:#e8e8ff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;opacity:0.25" />
+    <rect
+       y="442.40598"
+       x="51.545567"
+       height="47.857147"
+       width="231.52757"
+       id="use3011"
+       style="color:#000000;fill:#f6d5ff;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;opacity:0.25" />
+    <rect
+       style="color:#000000;fill:#e5ffd5;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="use3023"
+       width="231.52757"
+       height="47.857147"
+       x="51.536568"
+       y="562.388" />
+    <rect
+       style="color:#000000;fill:#fff6d5;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="use3025"
+       width="231.52757"
+       height="47.857147"
+       x="51.545567"
+       y="622.37897" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L"
+       x="167.51636"
+       y="650.93359"
+       id="text2985"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2987"
+         x="167.51636"
+         y="650.93359">flat arrays</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text2989"
+       y="592.67059"
+       x="167.05736"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L"
+       xml:space="preserve"><tspan
+         y="592.67059"
+         x="167.05736"
+         id="tspan2991"
+         sodipodi:role="line">lists and records</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L;opacity:0.25"
+       x="107.14285"
+       y="530.92456"
+       id="text2993"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2995"
+         x="107.14285"
+         y="530.92456">pointers</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text2997"
+       y="532.67957"
+       x="227.14285"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L;opacity:0.25"
+       xml:space="preserve"><tspan
+         y="532.67957"
+         x="227.14285"
+         id="tspan2999"
+         sodipodi:role="line">unions</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L;opacity:0.25"
+       x="167.05736"
+       y="470.93356"
+       id="text3001"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3003"
+         x="167.05736"
+         y="470.93356">runtime objects</tspan></text>
+    <rect
+       style="color:#000000;fill:#ffe6d5;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;opacity:0.25"
+       id="use3031"
+       width="231.52757"
+       height="47.857147"
+       x="51.545567"
+       y="682.37897" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text3033"
+       y="710.93359"
+       x="167.51636"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L;opacity:0.25"
+       xml:space="preserve"><tspan
+         y="710.93359"
+         x="167.51636"
+         id="tspan3035"
+         sodipodi:role="line">physical bytes</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L;opacity:0.25"
+       x="311.82254"
+       y="710.93359"
+       id="text3832"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3834"
+         x="311.82254"
+         y="710.93359">binary blobs on disk, network, or memory</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3836"
+       y="650.93359"
+       x="311.82254"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L"
+       xml:space="preserve"><tspan
+         y="650.93359"
+         x="311.82254"
+         id="tspan3838"
+         sodipodi:role="line">one of many array libraries, e.g. Numpy</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L"
+       x="311.82254"
+       y="579.66559"
+       id="text3840"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3842"
+         x="311.82254"
+         y="579.66559">the hard part: arbitrary length lists and</tspan><tspan
+         sodipodi:role="line"
+         x="311.82254"
+         y="602.16559"
+         id="tspan3844">array-of-structs to struct-of-arrays translation</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L;opacity:0.25"
+       x="311.82254"
+       y="530.93359"
+       id="text3846"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3848"
+         x="311.82254"
+         y="530.93359">can be built out of lists and records</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3850"
+       y="459.68356"
+       x="311.82254"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L;opacity:0.25"
+       xml:space="preserve"><tspan
+         y="459.68356"
+         x="311.82254"
+         id="tspan3852"
+         sodipodi:role="line">Unicode strings, variable-length integers,</tspan><tspan
+         y="482.18356"
+         x="311.82254"
+         sodipodi:role="line"
+         id="tspan3854">hashmaps rather than <tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier 10 Pitch;-inkscape-font-specification:Courier 10 Pitch"
+   id="tspan3856">List&lt;Record&lt;K,V&gt;&gt;</tspan></tspan></text>
+  </g>
+</svg>
